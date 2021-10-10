@@ -77,8 +77,6 @@ class Calculator(Generic[Numeric]):
         take specified nth root from memory value
         convert the output to match input format (int or float)
         """
-        if nth_root < 0:
-            raise ValueError('Input should be a positive number')
             
         if isinstance(self.memory, int):
             root = round(pow(self.memory, 1/nth_root))

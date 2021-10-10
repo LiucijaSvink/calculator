@@ -1,16 +1,22 @@
 import pytest
 from calculator import Calculator
-   
+
+# test input time incompatibility
 def test_calculator_types():
+    
     with pytest.raises(TypeError):
         Calculator(4).add('str')    
+        
     with pytest.raises(TypeError):
         Calculator([3, 6]).subtract(-56)
+        
     with pytest.raises(TypeError):
         Calculator([-5, -67]).subtract([])
+        
     with pytest.raises(TypeError):
         Calculator([-5, -67]).divide(5)    
 
+# test correctness of calculations
 def test_calculator_result():
     
     cal = Calculator(-10)   
