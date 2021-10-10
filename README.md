@@ -4,7 +4,16 @@ Calculator is a tool for performing mathematical operations.
 
 ## Installation
 
-
+To install the calculator package
+1. Use the Code button in the Github repository to download the package to your local computer. Using Python, navigate to the calculator folder to use the package.
+2. Use package manager to install calculator like below.
+```python
+pip install git+https://github.com/LiucijaSvink/calculator
+```
+3. Use pip command in Google Colab's environment to install calculator as below.
+```python
+!pip install git+https://github.com/LiucijaSvink/calculator.git
+```
 ## Usage
 
 The calculator provides the following functions:
@@ -24,7 +33,7 @@ The calculator packages has one module, also named calculator. Once installed, t
 
 ```python
 import calculator
-from calculator import calculator
+from calculator import Calculator
 
 # initialize calculator
 calculator = Calculator()
