@@ -1,7 +1,7 @@
 import pytest
 from calculator import Calculator
 
-# test input time incompatibility
+# test input type incompatibility
 def test_calculator_types():
     
     with pytest.raises(TypeError):

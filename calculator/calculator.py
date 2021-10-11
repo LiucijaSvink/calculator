@@ -31,50 +31,38 @@ class Calculator(Generic[Numeric]):
     
     @classmethod
     def reset(cls, memory_number: Numeric=0) -> Numeric:
-        """
-        reset the memory to memory number value
-        """
+        """reset the memory to memory number value"""
         cls.memory = memory_number
         print(cls.memory)
     
     def __init__(self, number: Numeric=0) -> None:
-        """
-        construct attribute for the Calculator object
-        """
+        """construct attribute for the Calculator object"""
         self.number = number
         self.reset(number)
     
     def add(self, current_number: Numeric) -> Numeric:
-        """
-        add provided number to memory value 
-        """
+        """add provided number to memory value"""
         addition = self.memory + current_number
         return self.reset(addition)
 
     def subtract(self, current_number: Numeric) -> Numeric:
-        """
-        subtract provided number from memory value 
-        """
+        """subtract provided number from memory value"""
         subtraction = self.memory - current_number
         return self.reset(subtraction)
     
     def multiply(self, current_number: Numeric) -> Numeric:
-        """
-        multiply memory value by provided number
-        """
+        """multiply memory value by provided number"""
         multiplication = self.memory * current_number
         return self.reset(multiplication)
 
     def divide(self, current_number: Numeric) -> Numeric:
-        """
-        divide memory value by provided number 
-        """
+        """divide memory value by provided number"""
         division = self.memory / current_number
         return self.reset(division)
      
     def root(self, nth_root: Numeric) -> Numeric:
         """
-        take specified nth root from memory value
+        take provided nth root from memory value
         convert the output to match input format (int or float)
         """
             
