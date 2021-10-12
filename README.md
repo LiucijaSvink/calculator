@@ -49,6 +49,9 @@ calculator.reset(0)
 
 See Google Colab notebook for more examples.
 
+## Docker file
+The added docker file allows to build a Docker image. Dockerfile is a script, composed of various commands (instructions) and arguments listed successively to automatically perform actions on a base image.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 

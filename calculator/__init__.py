@@ -1,4 +1,3 @@
-# Import package
+# import package
 
-import calculator
-from .calculator import Calculator
+from calculator.calculator import Calculator
