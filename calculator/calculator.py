@@ -1,8 +1,8 @@
-from typing import TypeVar, Generic
+from typing import Union
 
-Numeric = TypeVar('Numeric', int, float)
+Numeric = Union[int, float, complex]
 
-class Calculator(Generic[Numeric]):
+class Calculator():
     """
     Class representing Calculator
 
@@ -11,9 +11,8 @@ class Calculator(Generic[Numeric]):
     Examples:
         
         Initiate object
-        >>> cal = Calculator()
-        0
         >>> cal = Calculator(12.5)
+        >>> cal.display
         12.5
         
         Perform operations
@@ -25,55 +24,82 @@ class Calculator(Generic[Numeric]):
         8.0
         >>> cal.root(3)
         2.0
+        >>> cal.divide(7)
+        0.2857142857142857
+        >>> cal.reset()
+        0
 
     """
-    memory = 0
+    def __init__(self, memory: Numeric=0) -> None:
+        """Construct attribute for the Calculator object"""
+        self.check_type(memory)
+        self.__memory = memory
+        
     
-    @classmethod
-    def reset(cls, memory_number: Numeric=0) -> Numeric:
-        """reset the memory to memory number value"""
-        cls.memory = memory_number
-        print(cls.memory)
+    def check_type(self, current_number: Numeric) -> None:            
+        """"Check if the input type is correct"""
+        if not isinstance(current_number, (int, float, complex)): 
+            raise TypeError('The calculator is designed to work with single '
+                            'number input. Please provide valid number')
     
-    def __init__(self, number: Numeric=0) -> None:
-        """construct attribute for the Calculator object"""
-        self.number = number
-        self.reset(number)
+    def reset(self, memory_number: Numeric=0) -> Numeric:
+        """Reset the memory to memory number value"""
+        self.check_type(memory_number)
+        self.__memory = memory_number
+        return self.__memory
     
     def add(self, current_number: Numeric) -> Numeric:
-        """add provided number to memory value"""
-        addition = self.memory + current_number
+        """Add provided number to memory value"""
+        self.check_type(current_number)
+        addition = self.__memory + current_number
         return self.reset(addition)
 
     def subtract(self, current_number: Numeric) -> Numeric:
-        """subtract provided number from memory value"""
-        subtraction = self.memory - current_number
+        """Subtract provided number from memory value"""
+        self.check_type(current_number)
+        subtraction = self.__memory - current_number
         return self.reset(subtraction)
     
     def multiply(self, current_number: Numeric) -> Numeric:
-        """multiply memory value by provided number"""
-        multiplication = self.memory * current_number
+        """Multiply memory value by provided number"""
+        self.check_type(current_number)
+        multiplication = self.__memory * current_number
         return self.reset(multiplication)
 
     def divide(self, current_number: Numeric) -> Numeric:
-        """divide memory value by provided number"""
-        division = self.memory / current_number
-        return self.reset(division)
-     
-    def root(self, nth_root: Numeric) -> Numeric:
+        """Divide memory value by provided number
+        Handle division by 0 error.
         """
-        take provided nth root from memory value
-        convert the output to match input format (int or float)
+        self.check_type(current_number)
+        
+        try:
+            division = self.__memory / current_number
+            return self.reset(division)
+            
+        except:
+            print(f'Division by {current_number} not possible')
+    
+    def root(self, nth_root: Numeric) -> Numeric:   
+        """ Take specified nth root from memory value
+        Handle inacceptable root error. 
         """
+        self.check_type(nth_root)
+        
+        try:
+            root = pow(self.__memory, 1/nth_root)
+            return self.reset(root)
+        except:
+            print(f'{nth_root} root of number {self.__memory} is not possible')
             
-        if isinstance(self.memory, int):
-            root = round(pow(self.memory, 1/nth_root))
-            
-        if isinstance(self.memory, float):
-            root = pow(self.memory, 1/nth_root)
-
-        return self.reset(root)
-
+    @property
+    def get_memory(self) -> Numeric:  
+        return self.__memory
+    
+    @property
+    def display(self) -> None:
+        print(self.__memory)
+        
+        
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
