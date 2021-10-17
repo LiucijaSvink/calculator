@@ -95,7 +95,7 @@ To get a memory value which can be assigned to a variable, use:
 ```python
 result = calculator.get_memory
 ```
-The repository Google colab's notebooks can be accessed [here](https://github.com/LiucijaSvink/calculator_notebooks/)
+The Google colab's notebooks of this repository can be accessed [here](https://github.com/LiucijaSvink/calculator_notebooks/)
 
 ## Dockerfile
 The added docker file allows to build a Docker image. Dockerfile is a script, composed of various commands (instructions) and arguments listed successively to automatically perform actions on a base image.
