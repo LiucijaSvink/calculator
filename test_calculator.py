@@ -2,29 +2,32 @@ import pytest
 from calculator import Calculator
 
 # Test input type incompatibility
-def test_calculator_types():
+def test_calculator_empty_input():
     with pytest.raises(TypeError):
         Calculator().add()
 
+def test_calculator_string_input():
     with pytest.raises(TypeError):
         Calculator(4).add('str')    
-        
+
+def test_calculator_list_input():        
     with pytest.raises(TypeError):
         Calculator([3, 6]).subtract(-56)
-        
+
+def test_calculator_tuple_no_input():          
     with pytest.raises(TypeError):
         Calculator((6, 8)).multiply([])
         
 
 # Test correctness of calculations
 cal = Calculator()  
-def test_calculator_add():
+def test_calculator_add_function():
     cal.add(-10)
     assert cal.get_memory == -10        
     cal.add(-440)
     assert cal.get_memory == -450
 
-def test_calculator_subtract():
+def test_calculator_subtract_function():
     cal.subtract(550)
     assert cal.get_memory == -1000 
 

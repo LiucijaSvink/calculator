@@ -51,20 +51,20 @@ class Calculator():
     def add(self, current_number: Numeric) -> Numeric:
         """Add provided number to memory value"""
         self.check_type(current_number)
-        addition = self.__memory + current_number
-        return self.reset(addition)
+        self.__memory = self.__memory + current_number
+        return self.__memory
 
     def subtract(self, current_number: Numeric) -> Numeric:
         """Subtract provided number from memory value"""
         self.check_type(current_number)
-        subtraction = self.__memory - current_number
-        return self.reset(subtraction)
+        self.__memory= self.__memory - current_number
+        return self.__memory
     
     def multiply(self, current_number: Numeric) -> Numeric:
         """Multiply memory value by provided number"""
         self.check_type(current_number)
-        multiplication = self.__memory * current_number
-        return self.reset(multiplication)
+        self.__memory = self.__memory * current_number
+        return self.__memory
 
     def divide(self, current_number: Numeric) -> Numeric:
         """Divide memory value by provided number
@@ -73,9 +73,8 @@ class Calculator():
         self.check_type(current_number)
         
         try:
-            division = self.__memory / current_number
-            return self.reset(division)
-            
+            self.__memory = self.__memory / current_number
+            return self.__memory
         except:
             print(f'Division by {current_number} not possible')
     
@@ -86,8 +85,8 @@ class Calculator():
         self.check_type(nth_root)
         
         try:
-            root = pow(self.__memory, 1/nth_root)
-            return self.reset(root)
+            self.__memory = pow(self.__memory, 1/nth_root)
+            return self.__memory
         except:
             print(f'{nth_root} root of number {self.__memory} is not possible')
             
